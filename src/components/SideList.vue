@@ -15,7 +15,7 @@
   <div class="sidebar bg-primary">
     <h3 class="sidebar-title">{{props.title}}</h3>
     <ul class="sidebar-list" v-for="(item,index) in sidelist " :key="index">
-      <li><a href="#">{{item.title}}</a></li>
+      <li><router-link :to="`/post-details/${item.id}`">{{item.title}}</router-link></li>
     </ul>
   </div>
 </template>

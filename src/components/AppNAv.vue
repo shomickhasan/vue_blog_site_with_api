@@ -1,12 +1,13 @@
 <script setup>
-  const props = defineProps({
+import {RouterView,RouterLink} from "vue-router";
+
+const props = defineProps({
     category:{
       type: Object,
       default: null
     }
   })
 
-  console.log(props.category)
 </script>
 
 <template>
@@ -16,10 +17,15 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarText">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0" v-for="(category,index) in props.category" :key="index">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">{{category.name}}</a>
+            <router-link to="/" class="nav-link m-4 " aria-current="page" >হোম </router-link>
           </li>
+          <template v-for="(category,index) in props.category" :key="index">
+            <li class="nav-item">
+              <router-link :to="`/category/${category.id}`" class="nav-link m-4 " aria-current="page" href="#">{{category.name}}</router-link>
+            </li>
+          </template>
         </ul>
       </div>
     </div>

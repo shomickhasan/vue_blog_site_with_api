@@ -3,8 +3,9 @@ import {ref} from "vue";
 const category = ref(null)
 const blogs= ref(null)
 const postList = ref(null)
+const loadingFlagf= ref(true)
 
-const BASE_URL='https://basic-blog.teamrabbil.com/api/'
+ const BASE_URL='https://basic-blog.teamrabbil.com/api/'
 getCategory()
 getBlog()
 getBloglist()
@@ -12,15 +13,19 @@ getBloglist()
 async function getCategory(){
     let url = `${BASE_URL}post-categories`
     let response = await axios.get(url)
-    //console.log(response.data)
      category.value= response.data
 
 }
 
-async function getBlog(){
+export async function getBlog(){
     let url = `${BASE_URL}post-newest`
     let response = await axios.get(url)
-    blogs.value= response.data
+    if(response.status===200){
+        blogs.value= response.data
+        loadingFlagf.value=false
+    }
+
+
 
 }
 
@@ -31,4 +36,4 @@ async function getBloglist(){
 
 }
 
-export default {category,blogs,postList }
+export default {category,blogs,postList,loadingFlagf,BASE_URL }

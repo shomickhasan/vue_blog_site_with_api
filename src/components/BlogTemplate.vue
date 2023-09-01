@@ -3,11 +3,17 @@
     import SideList from "@/components/SideList.vue";
     const blog = blogs.blogs
     const sidelist = blogs.postList
-    console.log(sidelist)
+    const loader = blogs.loadingFlagf
+
 </script>
 
 <template>
-  <div class="container mt-5">
+  <div class="loader" v-if="loader===true">
+    <div class="spinner-border" role="status">
+      <span  class="  visually-hidden">Loading...</span>
+    </div>
+  </div>
+  <div class="container mt-5" v-else>
     <div class="row mt-4">
       <div class="col-md-9">
         <div class="row">
@@ -17,7 +23,7 @@
               <div class="card-body">
                 <h5 class="card-title">{{item.title}}</h5>
                 <p class="card-text">{{item.short}}</p>
-                <a href="#" class="btn btn-primary button">Read More</a>
+                <router-link :to="`/post-details/${item.id}`"  class="btn btn-primary button">Read More</router-link>
               </div>
             </div>
           </div>
@@ -36,5 +42,17 @@
 <style scoped>
   .button{
     background: linear-gradient(105deg,#6e99e6 ,#093c94);
+  }
+  .loader{
+    text-align: center;
+    height: 400px;
+
+  }
+  .loader .spinner-border{
+    height: 8rem;
+    width: 8rem;
+    margin-top: 10%;
+    color: #6e99e6;
+
   }
 </style>

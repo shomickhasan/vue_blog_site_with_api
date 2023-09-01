@@ -1,18 +1,10 @@
 <script setup>
-
-import AppNAv from "@/components/AppNAv.vue";
-import apiOperation from './Data/data.js'
-import BlogTemplate from "@/components/BlogTemplate.vue";
-import AppFooter from "@/components/AppFooter.vue";
-let category =apiOperation.category
+import HomeView from "@/views/HomeView.vue";
+import {RouterView} from "vue-router";
 </script>
 
 <template>
-   <AppNAv
-      :category="category"
-   />
-  <BlogTemplate/>
-  <AppFooter/>
+  <RouterView/>
 </template>
 
 <style scoped>
